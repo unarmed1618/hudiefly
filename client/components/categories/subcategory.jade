@@ -1,0 +1,8 @@
+.panel.panel-default
+ .panel-heading {{subcategory.name}}
+  .dropdown
+   select(id="{{subcategory.name}}" + "selector" ng-model="selectedSubsubcategory")
+    option(ng-repeat="subsubcategory in subsubcategories") {{subsubcategory.name}}
+   button(type="button" ng-click="addChild(selectedSubsubcategory)" ) Add Child
+ ul.list-group
+  li.list-group-item(ng-repeat="child in subcategory.children") {{child.name}}

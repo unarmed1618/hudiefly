@@ -1,0 +1,60 @@
+modal 
+navbar
+.container
+ p Is the controller working? {{nope}}
+ .col-md-6
+  form.form-horizontal
+   h4 Enter a new product:
+   .form-group
+    label Name:
+    input.form-control(ng-model="product.name" type="text")
+   .form-group
+    label Description:
+    textarea.form-control(rows="4" ng-model="product.desc")
+   .form-group
+    label Description Is Html?: 
+    input.form-control(type="checkbox" ng-model="product.descAsHtml")
+   .form-group
+    label Purchase URL:
+    input.form-control(ng-model="product.buyUrl" type="url")
+   .form-group
+    label Primary Image URL:
+    input.form-control(ng-model="product.primaryImgUrl" type="url")
+   .form-group
+    label Gallery:
+    span.glyphicon.glyphicon-plus(ng-click="product.gallery.push('');")
+   .form-group(ng-repeat="(i, image) in product.gallery track by i")
+    label Image {{i + 1}} 
+    input.form-control(type="url" ng-model="product.gallery[i]") 
+    span.glyphicon.glyphicon-minus(ng-click="product.gallery.splice(i, 1)")
+   .form-group
+    label Price:
+    .input-group
+     span.input-group-addon $
+     input.form-control(ng-model="product.price" type="text")
+   .form-group
+    label Variables:
+    span.glyphicon.glyphicon-plus(ng-click="product.variables.push({key:'k',value:'v'});")
+   .form-group(ng-repeat="(i, var) in product.variables track by i")
+    .row
+     .col-md-6
+      label Key {{i + 1}} 
+       span.glyphicon.glyphicon-minus(ng-click="product.variables.splice(i, 1)")
+      input.form-control(ng-model="var.key")
+     .col-md-6
+      label Value {{i + 1}}
+      input.form-control(ng-model="var.value")
+   .form-group    
+    button(ng-click="save()") Submit
+    button(ng-click="init()") Clear
+    br
+ .col-md-6
+  input(type="search" ng-model="q" placeholder="Filter")
+  ul.list-group
+   li.list-group-item(ng-repeat="product in products|filter:q as results") 
+    a(ng-href="/product/{{product._id}}") 
+     span.text-muted {{product.name}}
+    a.edit(ng-click="edit(product)") 
+     span.glyphicon.glyphicon-edit
+    a.trash(ng-click="delete(product._id)")
+     span.glyphicon.glyphicon-trash.pull-right

@@ -1,0 +1,30 @@
+modal 
+navbar
+.container
+ p Is the controller working? {{nope}}
+ .col-md-6
+  form.form-horizontal
+   h4 Enter a new post:
+   .form-group
+    label Title:
+    input.form-control(ng-model="post.name" type="text")
+   .form-group
+    label Description: (Short blurb, text only)
+    textarea.form-control(rows="2" ng-model="post.desc")
+   .form-group
+    label Body: (Use HTML for magic fancy stuff)
+    textarea.form-control(rows="6" ng-model="post.body")
+   .form-group    
+    button(ng-click="save()") Submit
+    button(ng-click="init()") Clear
+    br
+ .col-md-6
+  input(type="search" ng-model="q" placeholder="Filter")
+  ul.list-group
+   li.list-group-item(ng-repeat="post in posts|filter:q as results") 
+    a(ng-href="/post/{{post._id}}") 
+     span.text-muted {{post.name}}
+    a.edit(ng-click="edit(post)") 
+     span.glyphicon.glyphicon-edit
+    a.trash(ng-click="delete(post._id)")
+     span.glyphicon.glyphicon-trash.pull-right

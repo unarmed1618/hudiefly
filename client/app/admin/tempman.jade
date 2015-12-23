@@ -1,0 +1,38 @@
+modal 
+navbar
+.container
+ ul Static template paths that are currently automatically in use:
+  li maincontent --> The main landing page
+  li headercontent --> The header above the navigation bar
+ .col-md-6
+  form.form-horizontal
+   h4 Enter a new template:
+   .form-group
+    label Descriptor:
+    input.form-control(ng-model="template.name" type="text")
+   .form-group
+    label Path: (Don't mess with this unless you know what you're doing)
+    input.form-control(type="text" ng-model="template.path")
+   .form-group
+    label Site: (Don't mess with this unless you know what you're doing)
+    input.form-control(type="text" ng-model="template.site")
+   .form-group
+    label Body: (Use HTML)
+    textarea.form-control(rows="6" ng-model="template.content")
+   .form-group    
+    button(ng-click="save()") Submit
+    button(ng-click="init()") Clear
+    br
+ .col-md-6
+  input(type="search" ng-model="q" placeholder="Filter")
+  ul.list-group
+   li.list-group-item(ng-repeat="template in templates|filter:q as results") 
+    span.text-muted {{template.path}}
+    span.text-muted -->
+    span.text-muted {{template.site}}
+    span.text-muted /
+    span.text-muted {{template.name}}
+    a.edit(ng-click="edit(template)") 
+     span.glyphicon.glyphicon-edit
+    a.trash(ng-click="delete(template._id)")
+     span.glyphicon.glyphicon-trash.pull-right

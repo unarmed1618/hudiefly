@@ -1,0 +1,15 @@
+.panel.panel-default
+ .panel-heading {{category.name}}
+  .dropdown
+   select(id="{{category.name}}" + "selector" ng-model="selectedSubcategory") 
+    option(ng-repeat="category in categories" value="{{category._id}}") {{category.name}}
+   button(type="button" ng-click="addChild(selectedSubcategory)" ) Add Related
+   label Menu item?
+    input(type="checkbox" ng-model="category.menu" ng-click="updateThisCat()")
+
+   a(ng-click="deleteCategory(category);")
+    span.glyphicon.glyphicon-remove
+ ul.list-group
+  li.list-group-item(ng-repeat="child in category.inherits"){{child.name}}
+      a(ng-click="removeChild(child._id);")
+       span.glyphicon.glyphicon-remove

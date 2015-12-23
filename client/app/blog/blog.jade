@@ -1,0 +1,14 @@
+navbar
+.container
+  .row
+    .col-lg-12
+      h1.page-header Blog
+      .row
+      ul.list-group
+       li.list-group-item(ng-repeat='post in blog.posts')
+        a(ng-href="/post/{{post._id}}")
+         strong {{post.name}}
+         span.pull-right {{post.date}}
+         br
+         p {{post.desc}}
+footer

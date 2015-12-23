@@ -1,0 +1,21 @@
+navbar
+.container
+  li(ng-show='isAdmin()', ui-sref-active='active')
+   a(ui-sref='category manager') Category Management
+  li(ng-show='isAdmin()', ui-sref-active='active')
+   a(ui-sref='product manager') Product Management
+  li(ng-show='isAdmin()', ui-sref-active='active')
+   a(ui-sref='blog manager') Blog Management
+  li(ng-show='isAdmin()', ui-sref-active='active')
+   a(ui-sref='template manager') Template Management
+    
+
+  p
+    | The delete user and user index api routes are restricted to users with the 'admin' role.
+  ul.list-group
+    li.list-group-item(ng-repeat='user in users')
+      strong {{user.name}}
+      br
+      span.text-muted {{user.email}}
+      a.trash(ng-click='delete(user)')
+        span.glyphicon.glyphicon-trash.pull-right

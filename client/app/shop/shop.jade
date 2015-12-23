@@ -1,0 +1,15 @@
+navbar
+.container
+  .row
+    .col-lg-12
+      h1.page-header Products: {{shop.category}}
+      .row
+       .col-sm-6.col-md-4(ng-repeat='product in shop.products')
+        a(ng-href="/product/"+"{{product._id}}")
+         .thumbnail
+          img(src="{{product.primaryImgUrl}}")
+          .caption
+           p.text-center {{product.name}}
+           p.text-center {{product.price|currency:"$":2}}
+
+footer

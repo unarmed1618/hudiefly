@@ -1,0 +1,23 @@
+modal 
+navbar
+script.
+ function move_list_items(sourceid, destinationid)
+  {
+    $("#"+sourceid+"  option:selected").appendTo("#"+destinationid);
+  }
+.container
+ p Is the controller working? {{nope}}
+ .col-md-12
+  form
+   h4 Enter a new category:
+   .form-group
+    label Name:
+    input(ng-model="newRootCategory.name" type="text")
+    button(ng-click="addRootCategory()") Submit
+    br
+    label Every element under these categories will also be pulled up when this category is requested.
+ ul.list-unstyled
+   li(ng-repeat="category in categories")
+    .col-md-4
+     category(cat=category)
+ 

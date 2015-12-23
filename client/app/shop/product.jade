@@ -1,0 +1,18 @@
+navbar
+.container
+      .row
+       .col-md-6
+        img(style="height:auto;max-width:100%;" ng-src="{{viewing}}")
+        br
+        span
+         img(style="height:auto;width:60px;" ng-src="{{product.product.primaryImgUrl}}" ng-click="viewing=product.product.primaryImgUrl;" )
+        span(ng-repeat="(i,img) in product.product.gallery" )
+         img(style="height:auto;width:60px;" ng-src="{{product.product.gallery[i]}}" ng-click="setImg(i);")
+       .col-md-6
+         h1.page-header {{product.product.name}}
+         div#descdiv
+         ul
+          li(ng-repeat="var in product.product.variables")
+           strong {{var.key}} : {{var.value}}
+
+footer
